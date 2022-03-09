@@ -1,0 +1,3 @@
+lib/*
+.direnv
+.envrc
