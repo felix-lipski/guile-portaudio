@@ -1,3 +1,4 @@
+#include "sink.hpp"
 #include <stdio.h>
 #include <math.h>
 #include <queue>
@@ -47,28 +48,20 @@ static int patestCallback(const void* inputBuffer, void* outputBuffer, unsigned 
     return 0;
 }
 
+std::queue<float> buffer;
 
-/* double note(double x) { */
-/*     for (int j=0; j < 2; j++) { */
-/*         for (unsigned long i=1; i < 2410; i++) { buffer.push( (float) sin( i / 16.0 )); } */
-/*         for (unsigned long i=1; i < 2410; i++) { buffer.push( 0.0 ); } */
-/*     } */
-/*     for (unsigned long i=1; i < 4410; i++) { buffer.push( (float) sin( i / 4.0 )); } */
-/*     return 1.0; */
-/* }; */
-extern double afunc(double x) {
-    printf("Hello World");
-    return (0.5 * x);
-}
+void note(float x) {
+    float freq = x / 32.0;
+    for (unsigned long i=1; i < 11025; i++) { buffer.push( sin(i * freq)); }
+};
 
-int main(int argc, char **argv) {
-    std::queue<float> buffer;
+double entr(double arg) {
 
-    for (int j=0; j < 2; j++) {
-        for (unsigned long i=1; i < 2410; i++) { buffer.push( (float) sin( i / 16.0 )); }
-        for (unsigned long i=1; i < 2410; i++) { buffer.push( 0.0 ); }
-    }
-    for (unsigned long i=1; i < 4410; i++) { buffer.push( (float) sin( i / 4.0 )); }
+    /* for (int j=0; j < 2; j++) { */
+    /*     for (unsigned long i=1; i < 2410; i++) { buffer.push( (float) sin( i / 16.0 )); } */
+    /*     for (unsigned long i=1; i < 2410; i++) { buffer.push( 0.0 ); } */
+    /* } */
+    /* for (unsigned long i=1; i < 4410; i++) { buffer.push( (float) sin( i / 4.0 )); } */
 
     PaStream*           stream;
     PaStreamParameters  outputParams;
@@ -101,11 +94,12 @@ int main(int argc, char **argv) {
     /* } */
     while (1) {};
 
-    checkErr(Pa_StopStream( stream ));
-    checkErr(Pa_CloseStream( stream ));
+    /* checkErr(Pa_StopStream( stream )); */
+    /* checkErr(Pa_CloseStream( stream )); */
 
     Pa_Terminate();
-    return err;
+    return 0.3;
+    /* return err; */
 }
 
 PaError checkErr(PaError err) {

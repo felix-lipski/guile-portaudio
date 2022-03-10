@@ -16,6 +16,7 @@
           shellHook = ''
             export GUILE_LOAD_PATH=${pkgs.guile-json}/share/guile/site
             export LD_LIBRARY_PATH=${pkgs.portaudio}/lib:$PWD/lib
+            export GUILE_EXTENSIONS_PATH=${pkgs.portaudio}/lib:$PWD/lib
 
             echo ${pkgs.portaudio}
           '';
