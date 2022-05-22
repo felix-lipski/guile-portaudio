@@ -7,6 +7,7 @@
 
 double entr( double arg );
 void note( float arg );
+void note_stack( float xs[], int size );
 
 #ifdef __cplusplus
    }

@@ -55,6 +55,16 @@ void note(float x) {
     for (unsigned long i=1; i < 11025; i++) { buffer.push( sin(i * freq)); }
 };
 
+void note_stack(float xs[], int size) {
+    float freq = 1.0 / 32.0;
+    /* printf("int is %d so yeah\n", size); */
+    /* float ys[] = {0.4, 3.2, 6.7}; */
+    for (int i=0; i<size; i++) {
+        printf("int in arr is %f so yeah\n", xs[i]);
+    };
+    for (unsigned long i=1; i < 11025; i++) { buffer.push( sin(i * freq)); }
+};
+
 double entr(double arg) {
 
     /* for (int j=0; j < 2; j++) { */
